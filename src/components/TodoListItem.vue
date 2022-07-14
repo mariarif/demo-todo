@@ -17,7 +17,7 @@ defineProps({
     </div> -->
 
     <div class="grid-item">
-        <input type="checkbox" :checked="completed" />
+        <input class="checkCompleted" type="checkbox" :checked="completed" />
     </div>
     <div class="grid-item">
         {{ title }}
@@ -40,6 +40,9 @@ defineProps({
     display: inline-grid;
     background-color: rgb(222, 240, 212);
 } */
+.checkkCompleted{
+    width: 30px;
+}
 .grid-item{
     border: 2px groove rgb(143, 160, 134) ;
     background-color: rgb(222, 240, 212);
