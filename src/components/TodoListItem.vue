@@ -1,10 +1,20 @@
 <script setup>
-defineProps({
+import { computed, ref } from 'vue';
+import printTodoItem from '../utils/printToDoItem';
+const props= defineProps({
     userId: Number,
     id: Number,
     title: String,
     completed: Boolean
-})
+});
+
+const emit = defineEmits(['todoItemDeleted', 'todoItemCompleted']); 
+
+const newTitle=computed(() => printTodoItem(props.id,props.title,props.completed));
+
+function handleChange(event){
+    emit('todoItemCompleted', event.target.checked);
+}
 </script>
 
 <template>
@@ -15,15 +25,14 @@ defineProps({
             <button>Delete</button>
         </div> 
     </div> -->
-
     <div class="grid-item">
-        <input class="checkCompleted" type="checkbox" :checked="completed" />
+        <input type="checkbox" :checked="completed" @change="handleChange"/>
     </div>
     <div class="grid-item">
-        {{ title }}
+        {{ newTitle }}
     </div>
     <div class="grid-item">
-        <button class="btnDelete">Delete</button>
+        <button class="btnDelete" @click="$emit('todoItemDeleted')" >Delete</button>
     </div>
 
 </template>
@@ -40,9 +49,6 @@ defineProps({
     display: inline-grid;
     background-color: rgb(222, 240, 212);
 } */
-.checkkCompleted{
-    width: 30px;
-}
 .grid-item{
     border: 2px groove rgb(143, 160, 134) ;
     background-color: rgb(222, 240, 212);
