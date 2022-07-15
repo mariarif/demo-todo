@@ -10,6 +10,7 @@ const reactiveTodos=ref(todos);
 const counter= reactive({
     deleted: 0,
     updated: 0
+   
 });
 
 function getUpdatedCounter(){
@@ -83,8 +84,6 @@ watch(()=> newTodoTitle.value, (newValue) => {
 if(newValue.length===0)
     isDisabled.value= true;
     else isDisabled.value= false;
-
-    
 }
     );
 
